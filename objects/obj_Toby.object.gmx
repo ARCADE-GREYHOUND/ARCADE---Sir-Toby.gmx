@@ -27,26 +27,25 @@
             <kind>1</kind>
             <string>/// Inicializacion de las variables
 
+//Variables de movimiento
 grav = 5;
 hsp = 0;
 hsp_carry = 0;
 vsp = 0;
 facing = 1;
-
 movespeed_normal = 7;
 movespeed_powerup = 12;
-
 jumpspeed_normal = 25;
 jumpspeed_powerup = 6;
-
 jumpspeed = jumpspeed_normal;
 movespeed = movespeed_normal;
 
-
+//Variables de acciones
+digging = false;
 bite = false;
-armor = false;
 shoot = false;
 can_shoot = true;
+
 
 if (global.checkpointR == room)
 {
@@ -77,7 +76,9 @@ key_down = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>can_shoot = true;
+            <string>///DEFUNCT
+
+can_shoot = true;
 </string>
           </argument>
         </arguments>
@@ -100,7 +101,9 @@ key_down = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>shoot = false;
+            <string>///DEFUNCT
+
+shoot = false;
 sprite_index = spr_Ball
 </string>
           </argument>
@@ -124,7 +127,9 @@ sprite_index = spr_Ball
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>movespeed = movespeed_normal;
+            <string>///DEFUNCT
+
+movespeed = movespeed_normal;
 sprite_index = spr_Ball
 </string>
           </argument>
@@ -148,7 +153,9 @@ sprite_index = spr_Ball
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>jumpspeed = jumpspeed_normal;
+            <string>///DEFUNCT
+
+jumpspeed = jumpspeed_normal;
 sprite_index = spr_Ball
 </string>
           </argument>
@@ -172,76 +179,128 @@ sprite_index = spr_Ball
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// MOVIMIENTO-COLISIONES
+            <string>/// INTERACCION
 
 //Obtener las entradas de teclado
 
 key_right = keyboard_check(vk_right);
 key_left = keyboard_check(vk_left);
-key_jump = keyboard_check_pressed(vk_up);
 key_down = keyboard_check(vk_down);
+key_jump = keyboard_check_pressed(vk_up);
 key_shoot = keyboard_check_pressed(vk_space);
 key_hit = keyboard_check_pressed(vk_alt);
+key_dig = keyboard_check(vk_alt);
 
 //Operaciones con las entradas de teclado
 move = key_right - key_left;
 hsp = move * movespeed;
+
 if (place_meeting(x, y+1, obj_Block))
-{
-    if (key_jump) vsp = -jumpspeed;
-}
+{ if (key_jump) vsp = -jumpspeed; }
 
 var hsp_final = hsp + hsp_carry;
 hsp_carry = 0;
 
+// Entrada para ESCARBAR
 if (place_meeting(x, y+1, obj_Block))
 {
-    if (key_hit) 
-    { bite = true; }
+    if (key_down) &amp;&amp; (key_dig) 
+    {
+        digging = true;
+        bite = false;
+    }
+    else { digging = false; }
 }
 
-//Ataque
-if (bite = true) &amp;&amp; (place_meeting(x, y+1, obj_Block))
+// Entrada para ATAQUE
+if (place_meeting(x, y+1, obj_Block))
 {
-    sprite_index = spr_Toby_attack;
-    image_speed = 1.2;
-    if (image_index &gt; 8) 
-    { bite = false; }
-    if (image_index &gt;= 3) &amp;&amp; (image_index &lt;= 6)
+    if (key_hit) { bite = true; }
+}
+
+// Comando ATAQUE
+if (bite = true) &amp;&amp; (place_meeting(x, y+1, obj_Block)) 
+{
+    //Escarbar
+    if (digging = true)
     {
-        with (instance_create(x, y, obj_Toby_hitbox))
+        if (global.armor = true) sprite_index = spr_Toby_dig_armor;
+        if (global.armor = false) sprite_index = spr_Toby_dig;
+        image_speed = 0.5;
+        if (place_meeting(x, y, obj_armor))
         {
-            image_xscale = other.image_xscale;
-            with (instance_place(x, y, obj_enemy_parent))
-            { 
-                if (hit = false)
-                {
-                    hit = true;
-                    vsp = -20;
-                    hsp = sign(x - other.x) * 4;
-                    image_xscale = sign(hsp);
+            with (instance_place(x, y, obj_armor))
+            {
+                dug = true;
+            }
+        }
+    }
+    //Atacar
+    else
+    {
+        if (global.armor = true) sprite_index = spr_Toby_attack_armor;
+        if (global.armor = false) sprite_index = spr_Toby_attack;
+        image_speed = 1.2;
+        if (image_index &gt; 8) 
+        { bite = false; }
+        if (image_index &gt;= 2) &amp;&amp; (image_index &lt;= 6)
+        {
+            with (instance_create(x, y, obj_Toby_hitbox))
+            {
+                image_xscale = other.image_xscale;
+                with (instance_place(x, y, obj_enemy_parent))
+                { 
+                    if (hit = false)
+                    {
+                        hit = true;
+                        vsp = -20;
+                        hsp = sign(x - other.x) * 4;
+                        image_xscale = sign(hsp);
+                    }
                 }
             }
         }
     }
 }
+
 else
 {
-    if (bite = false)
+    if (bite = false) &amp;&amp; (digging = false)
     {
         /// Animacion
         image_xscale = facing;
         image_speed = 0.8;
         if (hsp &lt; 0) facing = -1;
         if (hsp &gt; 0) facing = 1;
-        if (hsp = 0) { sprite_index = spr_Toby_standing; }
-        else { sprite_index = spr_Toby_running; }
-        if (vsp &lt; 0) { sprite_index = spr_Toby_jumping; }
-        if (vsp &gt; 0) { sprite_index = spr_Toby_falling; }
         
-        //Fix attack bug
-        if (image_index &gt;= 9) 
-        { bite = false; }
+            //Con Armadura
+            if (global.armor = true)
+            {
+                if (hsp = 0) { sprite_index = spr_Toby_standing_armor; }
+                else { sprite_index = spr_Toby_running_armor; }
+                if (vsp &lt; 0) { sprite_index = spr_Toby_jumping_armor; }
+                if (vsp &gt; 0) { sprite_index = spr_Toby_falling_armor; }
+            }
+            //Sin Armadura
+            if (global.armor = false)
+            {
+                if (hsp = 0) { sprite_index = spr_Toby_standing; }
+                else { sprite_index = spr_Toby_running; }
+                if (vsp &lt; 0) { sprite_index = spr_Toby_jumping; }
+                if (vsp &gt; 0) { sprite_index = spr_Toby_falling; }
+            }
+        
+        //Corregir bug de animación
+        if (sprite_index = spr_Toby_attack) || (sprite_index = spr_Toby_attack_armor)
+        {
+            if (image_index &gt;= 9) 
+            { bite = false; }
+        }
+        if (sprite_index = spr_Toby_dig) || (sprite_index = spr_Toby_dig_armor)
+        {
+            if (image_index &gt;= 3)
+            { digging = false; }
+        }
 
         //Colision horizontal
         if (place_meeting(x+hsp_final, y, obj_Block)) &amp;&amp; (key_hit = false)
@@ -284,7 +343,7 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///ATAQUES
+            <string>/// DISPARAR
 
 // Disparar
 bullet_right = keyboard_check(vk_right);
