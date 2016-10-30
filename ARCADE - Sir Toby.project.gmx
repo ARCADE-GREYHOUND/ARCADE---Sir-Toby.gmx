@@ -18,7 +18,7 @@
       <sprites name="armor">
         <sprite>sprites\spr_Toby_running_armor</sprite>
         <sprite>sprites\spr_Toby_standing_armor</sprite>
-        <sprite>sprites\spr_Toby_jump_armor</sprite>
+        <sprite>sprites\spr_Toby_jumping_armor</sprite>
         <sprite>sprites\spr_Toby_falling_armor</sprite>
         <sprite>sprites\spr_Toby_attack_armor</sprite>
         <sprite>sprites\spr_Toby_dig_armor</sprite>
@@ -93,6 +93,12 @@
       <sprite>sprites\spr_powerup_gun</sprite>
       <sprite>sprites\spr_bullet</sprite>
     </sprites>
+    <sprites name="GUI">
+      <sprite>sprites\spr_heart</sprite>
+      <sprite>sprites\spr_healthbar</sprite>
+      <sprite>sprites\spr_health</sprite>
+      <sprite>sprites\spr_aura</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <backgrounds name="BACKGROUND - BOSQUE">
@@ -113,8 +119,7 @@
   </paths>
   <scripts name="scripts">
     <script>scripts\scr_death.gml</script>
-    <script>scripts\script_colision_vertical.gml</script>
-    <script>scripts\scr_Toby_attack.gml</script>
+    <script>scripts\script3.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\obj_Toby</object>
@@ -167,7 +172,6 @@
         </objects>
       </objects>
       <object>objects\obj_background_forest_ctrl</object>
-      <object>objects\obj_camara</object>
     </objects>
     <objects name="POWERUPS">
       <object>objects\obj_powerup</object>
@@ -176,9 +180,13 @@
       <object>objects\obj_bullet</object>
     </objects>
     <objects name="NO-SPRITE">
-      <object>objects\obj_controller_life</object>
-      <object>objects\obj_gameovercontroller</object>
-      <object>objects\obj_cam</object>
+      <object>objects\obj_life_ctrl</object>
+      <object>objects\obj_camara</object>
+      <objects name="ROOM CTRL">
+        <object>objects\obj_room_death_ctrl</object>
+        <object>objects\obj_room_start_ctrl</object>
+        <object>objects\obj_room_gameover_crtl</object>
+      </objects>
     </objects>
     <objects name="COLLECTIBLES">
       <object>objects\obj_wisp</object>
@@ -189,10 +197,16 @@
     <object>objects\obj_pause</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_initialize</room>
-    <room>rooms\bosque_nivel1</room>
-    <room>rooms\rm_forest_1</room>
-    <room>rooms\rm_test</room>
+    <room>rooms\room_start</room>
+    <room>rooms\room_initialize</room>
+    <rooms name="NIVEL BOSQUE - SIMON">
+      <room>rooms\room_bosque_nivel1</room>
+      <room>rooms\room_bosque_nivel2</room>
+      <room>rooms\room_bosque_nivelBoss</room>
+      <room>rooms\room_forest_test</room>
+    </rooms>
+    <room>rooms\room_death</room>
+    <room>rooms\room_gameover</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
