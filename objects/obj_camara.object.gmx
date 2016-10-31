@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>x = obj_Toby.x;
+            <string>///POSICIÓN DE LA CAMARA
+
+x = obj_Toby.x;
 y = obj_Toby.y - 56;
 </string>
           </argument>
