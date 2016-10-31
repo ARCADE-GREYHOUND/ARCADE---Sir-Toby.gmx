@@ -14,27 +14,14 @@
         <sprite>sprites\spr_Toby_falling</sprite>
         <sprite>sprites\spr_Toby_attack</sprite>
         <sprite>sprites\spr_Toby_dig</sprite>
-        <sprite>sprites\spr_Toby_damage</sprite>
-        <sprites name="damage">
-          <sprite>sprites\spr_Toby_running_damage</sprite>
-          <sprite>sprites\spr_Toby_standing_damage</sprite>
-          <sprite>sprites\spr_Toby_falling_damage</sprite>
-          <sprite>sprites\spr_Toby_jumping_damage</sprite>
-          <sprite>sprites\spr_Toby_attack_damage</sprite>
-          <sprite>sprites\spr_Toby_dig_damage</sprite>
-        </sprites>
       </sprites>
       <sprites name="armor">
         <sprite>sprites\spr_Toby_running_armor</sprite>
         <sprite>sprites\spr_Toby_standing_armor</sprite>
-        <sprite>sprites\spr_Toby_jumping_armor</sprite>
+        <sprite>sprites\spr_Toby_jump_armor</sprite>
         <sprite>sprites\spr_Toby_falling_armor</sprite>
         <sprite>sprites\spr_Toby_attack_armor</sprite>
         <sprite>sprites\spr_Toby_dig_armor</sprite>
-        <sprite>sprites\spr_Toby_damage_armor</sprite>
-        <sprites name="damage">
-          <sprite>sprites\spr_Toby_running_armor_damage</sprite>
-        </sprites>
       </sprites>
       <sprites name="ardilla">
         <sprite>sprites\spr_ardilla_walking</sprite>
@@ -106,12 +93,52 @@
       <sprite>sprites\spr_powerup_gun</sprite>
       <sprite>sprites\spr_bullet</sprite>
     </sprites>
-    <sprites name="GUI">
-      <sprite>sprites\spr_lives</sprite>
-      <sprite>sprites\spr_healthbar</sprite>
-      <sprite>sprites\spr_health</sprite>
-      <sprite>sprites\spr_aura</sprite>
-      <sprite>sprites\spr_Toby_ID</sprite>
+    <sprites name="Nivel 2 ciudad">
+      <sprites name="Platform">
+        <sprites name="baldosas">
+          <sprite>sprites\spr_baldosa_1</sprite>
+          <sprite>sprites\spr_baldosa_2_</sprite>
+          <sprite>sprites\spr_baldosa_3</sprite>
+          <sprite>sprites\spr_baldosa_4_</sprite>
+        </sprites>
+        <sprites name="peldaños">
+          <sprite>sprites\spr_peldano_1_</sprite>
+          <sprite>sprites\spr_peldano_iz</sprite>
+          <sprite>sprites\spr_peldano_der</sprite>
+          <sprite>sprites\spr_peldano_medio</sprite>
+        </sprites>
+      </sprites>
+      <sprites name="enemies ">
+        <sprites name="paloma">
+          <sprite>sprites\spr_paloma_left</sprite>
+          <sprite>sprites\spr_paloma_rigth</sprite>
+        </sprites>
+        <sprites name="ventanas">
+          <sprite>sprites\spr_ventana_1</sprite>
+          <sprite>sprites\spr_ventana_2</sprite>
+        </sprites>
+        <sprites name="materas">
+          <sprite>sprites\spr_matera</sprite>
+        </sprites>
+        <sprites name="boss">
+          <sprites name="stay">
+            <sprite>sprites\spr_boss_stay_left</sprite>
+            <sprite>sprites\spr_boss_stay_rigth</sprite>
+          </sprites>
+          <sprites name="walk">
+            <sprite>sprites\spr_boss_walk_left</sprite>
+            <sprite>sprites\spr_boss_walk_rigth</sprite>
+          </sprites>
+          <sprites name="atack 1">
+            <sprite>sprites\spr_boss_atack_1_left</sprite>
+            <sprite>sprites\spr_boss_atack_1_rigth</sprite>
+          </sprites>
+          <sprites name="atack 2">
+            <sprite>sprites\spr_boss_atack_2_rigth_</sprite>
+            <sprite>sprites\spr_boss_atack_2_left</sprite>
+          </sprites>
+        </sprites>
+      </sprites>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -133,12 +160,11 @@
   </paths>
   <scripts name="scripts">
     <script>scripts\scr_death.gml</script>
-    <script>scripts\scr_damage.gml</script>
+    <script>scripts\script_colision_vertical.gml</script>
+    <script>scripts\scr_Toby_attack.gml</script>
   </scripts>
   <objects name="objects">
-    <object>objects\obj_playerfollow</object>
     <object>objects\obj_Toby</object>
-    <object>objects\obj_Toby_damage</object>
     <object>objects\obj_ardilla</object>
     <object>objects\obj_Toby_hitbox</object>
     <object>objects\obj_Block</object>
@@ -188,6 +214,7 @@
         </objects>
       </objects>
       <object>objects\obj_background_forest_ctrl</object>
+      <object>objects\obj_camara</object>
     </objects>
     <objects name="POWERUPS">
       <object>objects\obj_powerup</object>
@@ -196,13 +223,9 @@
       <object>objects\obj_bullet</object>
     </objects>
     <objects name="NO-SPRITE">
-      <object>objects\obj_life_ctrl</object>
-      <object>objects\obj_camara</object>
-      <objects name="ROOM CTRL">
-        <object>objects\obj_room_death_ctrl</object>
-        <object>objects\obj_room_start_ctrl</object>
-        <object>objects\obj_room_gameover_crtl</object>
-      </objects>
+      <object>objects\obj_controller_life</object>
+      <object>objects\obj_gameovercontroller</object>
+      <object>objects\obj_cam</object>
     </objects>
     <objects name="COLLECTIBLES">
       <object>objects\obj_wisp</object>
@@ -211,18 +234,54 @@
       <object>objects\obj_spotlight</object>
     </objects>
     <object>objects\obj_pause</object>
+    <objects name="Nivel 2 ciudad Jm">
+      <objects name="platforms ciudad ">
+        <objects name="peldaños ">
+          <object>objects\obj_peldano_1_</object>
+          <object>objects\obj_peldano_iz</object>
+          <object>objects\obj_peldano_med</object>
+          <object>objects\obj_peldano_der</object>
+        </objects>
+        <objects name="baldosas">
+          <object>objects\obj__baldosa_1_</object>
+          <object>objects\obj_baldosa_2_</object>
+          <object>objects\obj_baldosa_3</object>
+          <object>objects\obj_baldosa_4</object>
+        </objects>
+      </objects>
+      <objects name="Enemies ciudad ">
+        <objects name="paloma ">
+          <object>objects\obj_paloma_left_</object>
+          <object>objects\obj_paloma_rigth</object>
+        </objects>
+        <objects name="spawners ">
+          <objects name="iz ">
+            <object>objects\spawner_iz_father_</object>
+            <object>objects\spawner_1_iz</object>
+            <object>objects\spawner_2_iz</object>
+            <object>objects\spawner_3_iz</object>
+            <object>objects\spawner_4_iz_</object>
+            <object>objects\spawner_5_iz_</object>
+          </objects>
+          <objects name="der">
+            <object>objects\spawner_der_father_</object>
+            <object>objects\spawner_1_der_</object>
+            <object>objects\spawner_2_der_</object>
+            <object>objects\spawner_3_der</object>
+            <object>objects\spawner_4_der</object>
+          </objects>
+        </objects>
+        <objects name="ventana-matera">
+          <object>objects\ventana</object>
+        </objects>
+      </objects>
+    </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\room_initialize</room>
-    <room>rooms\room_start</room>
-    <rooms name="NIVEL BOSQUE - SIMON">
-      <room>rooms\room_bosque_nivel1</room>
-      <room>rooms\room_bosque_nivel2</room>
-      <room>rooms\room_bosque_nivelBoss</room>
-      <room>rooms\room_forest_test</room>
-    </rooms>
-    <room>rooms\room_death</room>
-    <room>rooms\room_gameover</room>
+    <room>rooms\rm_initialize</room>
+    <room>rooms\bosque_nivel1</room>
+    <room>rooms\rm_forest_1</room>
+    <room>rooms\rm_test</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

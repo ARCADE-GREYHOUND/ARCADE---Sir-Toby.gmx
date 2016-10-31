@@ -306,6 +306,14 @@
     <instance objName="obj_platform_forest_center" x="1072" y="160" name="inst_4CDCAC09" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_platform_forest_center" x="1104" y="176" name="inst_8F10D6C5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_enemy_boar_chase" x="1024" y="208" name="inst_B0556D87" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="spawner_1_iz" x="16" y="480" name="inst_186F99A5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="spawner_2_iz" x="32" y="480" name="inst_973AD377" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="spawner_3_iz" x="336" y="448" name="inst_23800F29" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="spawner_1_der_" x="464" y="464" name="inst_E8D7FD83" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="spawner_2_der_" x="432" y="480" name="inst_AF358055" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="spawner_3_der" x="480" y="416" name="inst_40C55360" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="spawner_der_father_" x="272" y="448" name="inst_5ED976F6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="spawner_iz_father_" x="208" y="384" name="inst_BA1EE133" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
