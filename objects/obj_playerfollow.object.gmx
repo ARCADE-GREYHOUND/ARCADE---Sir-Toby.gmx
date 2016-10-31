@@ -25,19 +25,19 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///POSICIÓN DE LA CAMARA
+            <string>///POSICION DE JUGADOR
 
 if (instance_exists(obj_Toby_damage))
 {
     x = obj_Toby_damage.x;
-    y = obj_Toby_damage.y - 56;
+    y = obj_Toby_damage.y;
 }
 else
 {
     if (instance_exists(obj_Toby))
     {
         x = obj_Toby.x;
-        y = obj_Toby.y - 56;
+        y = obj_Toby.y;
     }
 }
 </string>

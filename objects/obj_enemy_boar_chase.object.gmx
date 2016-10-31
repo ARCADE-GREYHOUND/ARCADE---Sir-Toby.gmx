@@ -97,6 +97,26 @@ y += vsp;
         <arguments>
           <argument>
             <kind>1</kind>
+            <string></string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///INTERACCION
 
 image_xscale = (dir*(-1));
@@ -125,52 +145,18 @@ else
         {
             hsp = 0;
             vsp = (min(7, vsp + 5));
-            if (distance_to_object(obj_Toby) &lt; 96) state = e_state.chase;
+            if (distance_to_object(obj_playerfollow) &lt; 96) state = e_state.chase;
         }
         break;
         //Estado persecución
         case e_state.chase:
         {
-            dir = sign(obj_Toby.x - x);
+            dir = sign(obj_playerfollow.x - x);
             hsp = dir * 5;
             vsp = (min(7, vsp + 5));
-            if (distance_to_object(obj_Toby) &gt; 128) state = e_state.idle;
+            if (distance_to_object(obj_playerfollow) &gt; 128) state = e_state.idle;
         }
         break;
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///COLISION DE ENEMIGO
-
-if(place_meeting(x, y, obj_Toby))
-{
-    if (obj_Toby.y &lt; y-1)
-    { 
-        with (obj_Toby) vsp = -jumpspeed;
-        instance_destroy();
-    }
-    else
-    {
-        scr_death();
     }
 }
 </string>

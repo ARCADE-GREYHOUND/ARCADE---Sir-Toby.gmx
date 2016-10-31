@@ -51,7 +51,7 @@
         <arguments>
           <argument>
             <kind>11</kind>
-            <room>room_start</room>
+            <room>room_gameover</room>
           </argument>
         </arguments>
       </action>
