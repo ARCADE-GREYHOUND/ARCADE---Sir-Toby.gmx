@@ -3,35 +3,11 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-1000</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
-    <event eventtype="0" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>score = 0;
-lives = 3;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -49,11 +25,66 @@ lives = 3;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (lives &lt;= 0)
+            <string>///GESTIÓN DE VIDAS Y SALUD
+
+if (health &lt;= 0)
 {
-    game_restart();
-    room_goto(rm_gameover);
+    room_restart();
+    lives -= 1;
 }
+
+if (lives &lt;= 0)
+{
+    room_goto(room_death);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///DRAW HEALTHBAR
+
+//Draw Healthbar
+draw_sprite(spr_healthbar, 0, view_xview[0]+16, view_yview[0]+16);
+
+//Draw Health
+if (health &lt;= 0) draw_sprite(spr_health, 0, view_xview[0]+16, view_yview[0]+16);
+if (health = 1) draw_sprite(spr_health, 1, view_xview[0]+16, view_yview[0]+16);
+if (health = 2) draw_sprite(spr_health, 2, view_xview[0]+16, view_yview[0]+16);
+if (health &gt;= 3) draw_sprite(spr_health, 3, view_xview[0]+16, view_yview[0]+16);
+
+//Draw Aura
+if (global.aura &lt;= 0) draw_sprite(spr_aura, 0, view_xview[0]+16, view_yview[0]+16);
+if (global.aura = 1) draw_sprite(spr_aura, 1, view_xview[0]+16, view_yview[0]+16);
+if (global.aura = 2) draw_sprite(spr_aura, 2, view_xview[0]+16, view_yview[0]+16);
+if (global.aura &gt;= 3) draw_sprite(spr_aura, 3, view_xview[0]+16, view_yview[0]+16);
+
+//Draw Toby ID
+draw_sprite(spr_Toby_ID, 0, view_xview[0]+16, view_yview[0]+16);
+
+///Draw lives
+if (lives &lt;= 0) draw_sprite(spr_lives, 0, view_xview[0]+16, view_yview[0]+16);
+if (lives = 1) draw_sprite(spr_lives, 1, view_xview[0]+16, view_yview[0]+16);
+if (lives = 2) draw_sprite(spr_lives, 2, view_xview[0]+16, view_yview[0]+16);
+if (lives &gt;= 3) draw_sprite(spr_lives, 3, view_xview[0]+16, view_yview[0]+16);
+
 </string>
           </argument>
         </arguments>

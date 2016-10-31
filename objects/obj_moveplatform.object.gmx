@@ -75,7 +75,7 @@ if (place_meeting(x+hsp, y, obj_Block))
 
 x += hsp;
 
-
+//Cargar
 if (instance_exists(obj_Toby))
 {
     if (round(obj_Toby.y + (obj_Toby.sprite_height/2)) &gt; y) || (obj_Toby.key_down) mask_index = -1;

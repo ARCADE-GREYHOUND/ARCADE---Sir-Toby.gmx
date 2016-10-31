@@ -27,10 +27,12 @@
             <kind>1</kind>
             <string>///ENTRADA DE VARIABLES
 
-grav = 5;
+
 state = e_state.idle;
 hit = 0;
+
 dir = -1;
+grav = 5;
 hsp = 0;
 vsp = 0;
 movespeed = 6;
@@ -75,22 +77,27 @@ if (place_meeting(round(x),round(y+vsp),obj_Block))
     vsp = 0;
 }
 y += vsp;
-
-//Colision Enemigo
-if(place_meeting(x, y, obj_Toby))
-{
-    if (obj_Toby.y &lt; y-1)
-    { 
-        with (obj_Toby) vsp = -jumpspeed;
-        instance_destroy();
-    }
-    else
-    {
-        scr_death();
-        lives -= 1;
-    }
-}
 </string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string></string>
           </argument>
         </arguments>
       </action>
@@ -114,6 +121,7 @@ if(place_meeting(x, y, obj_Toby))
 
 image_xscale = (dir*(-1));
 
+//Animación de muerte
 if (hit = true)
 {
     sprite_index = spr_Boar_death;
@@ -122,29 +130,31 @@ if (hit = true)
 }
 else
 {
-    //ANIMATION
+    //Animagión de movimiento
     image_speed = 0.6;
     if (hsp!=0)
     { sprite_index = spr_Boar_running; }
     else 
     { sprite_index = spr_Boar_idle; }
 
-    //CHASE AI
+    //CHASE AI (Inteligencia Artificial de persecución, funciona dependiendo de la distancia al objeto jugador)
     switch (state)
     {
+        //Estado inactivo
         case e_state.idle:
         {
             hsp = 0;
             vsp = (min(7, vsp + 5));
-            if (distance_to_object(obj_Toby) &lt; 96) state = e_state.chase;
+            if (distance_to_object(obj_playerfollow) &lt; 96) state = e_state.chase;
         }
         break;
+        //Estado persecución
         case e_state.chase:
         {
-            dir = sign(obj_Toby.x - x);
+            dir = sign(obj_playerfollow.x - x);
             hsp = dir * 5;
             vsp = (min(7, vsp + 5));
-            if (distance_to_object(obj_Toby) &gt; 128) state = e_state.idle;
+            if (distance_to_object(obj_playerfollow) &gt; 128) state = e_state.idle;
         }
         break;
     }
