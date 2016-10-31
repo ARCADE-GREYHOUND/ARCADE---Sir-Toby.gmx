@@ -8,6 +8,72 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="5" enumb="51">
+      <action>
+        <libid>1</libid>
+        <id>224</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_another_room</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>11</kind>
+            <room>room_bosque_nivelBoss</room>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="5" enumb="50">
+      <action>
+        <libid>1</libid>
+        <id>224</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_another_room</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>11</kind>
+            <room>room_bosque_nivel2</room>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="5" enumb="49">
+      <action>
+        <libid>1</libid>
+        <id>224</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_another_room</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>11</kind>
+            <room>room_bosque_nivel1</room>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="5" enumb="18">
       <action>
         <libid>1</libid>
@@ -25,7 +91,7 @@
         <arguments>
           <argument>
             <kind>11</kind>
-            <room>room_initialize</room>
+            <room>room_bosque_nivel1</room>
           </argument>
         </arguments>
       </action>

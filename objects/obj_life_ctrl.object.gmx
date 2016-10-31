@@ -76,12 +76,15 @@ if (global.aura = 1) draw_sprite(spr_aura, 1, view_xview[0]+16, view_yview[0]+16
 if (global.aura = 2) draw_sprite(spr_aura, 2, view_xview[0]+16, view_yview[0]+16);
 if (global.aura &gt;= 3) draw_sprite(spr_aura, 3, view_xview[0]+16, view_yview[0]+16);
 
-///Draw lives
+//Draw Toby ID
+draw_sprite(spr_Toby_ID, 0, view_xview[0]+16, view_yview[0]+16);
 
-for(i = 0; i &lt; lives; i+=1)
-{
-    draw_sprite(spr_heart, -1, 0+32*i, 48);
-}
+///Draw lives
+if (lives &lt;= 0) draw_sprite(spr_lives, 0, view_xview[0]+16, view_yview[0]+16);
+if (lives = 1) draw_sprite(spr_lives, 1, view_xview[0]+16, view_yview[0]+16);
+if (lives = 2) draw_sprite(spr_lives, 2, view_xview[0]+16, view_yview[0]+16);
+if (lives &gt;= 3) draw_sprite(spr_lives, 3, view_xview[0]+16, view_yview[0]+16);
+
 </string>
           </argument>
         </arguments>

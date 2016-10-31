@@ -33,9 +33,7 @@ hsp = 0;
 hsp_carry = 0;
 vsp = 0;
 movespeed_normal = 7;
-movespeed_powerup = 12;
 jumpspeed_normal = 25;
-jumpspeed_powerup = 6;
 jumpspeed = jumpspeed_normal;
 movespeed = movespeed_normal;
 
@@ -44,17 +42,15 @@ digging = false;
 bite = false;
 shoot = false;
 can_shoot = true;
-damage = false;
-bounce = false;
-
-
-if (global.checkpointR == room)
-{
-    x = global.checkpointx;
-    y = global.checkpointy;
-}
 
 key_down = 0;
+
+
+    health -= 1;
+    vsp = -20;
+    hsp = sign(-global.facing) * 7;
+    image_xscale = sign(hsp);
+    alarm[0] = 90;
 </string>
           </argument>
         </arguments>
@@ -130,7 +126,7 @@ sprite_index = spr_Ball
             <kind>1</kind>
             <string>///RESTORE DAMAGE
 
-damage = false;
+instance_change(obj_Toby, true)
 </string>
           </argument>
         </arguments>

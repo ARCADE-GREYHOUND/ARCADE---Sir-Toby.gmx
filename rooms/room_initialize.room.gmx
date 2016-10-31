@@ -16,6 +16,7 @@ global.checkpoint = noone;
 global.checkpointR = 0;
 global.checkpointx = 0;
 global.checkpointy = 0;
+global.nivel = 0;
 
 global.armor = 0;
 global.aura = 0;
